@@ -17,3 +17,5 @@ export class Accounts {
     publicKey!: string
     account!: string
 }
+
+

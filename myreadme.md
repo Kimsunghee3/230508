@@ -1,25 +1,3 @@
-### wallet
-월렛은 node에 요청을 보낼 수 있다.
-노드의 입장에서 영수증은 단순하게 트랜잭션을 만들기 위한 요청 데이터일뿐이다. 
-트랜잭션 풀에 
-미사용 객체를 담는 트랜잭션 풀
-
-
-### 오늘 할 것
-- 트랜잭션 내용을 만들 것이다!!
-- 트랜잭션을 모르면 네트워크 수업때 좆된다...ㅎ
-
-### blockchain
-- http 서버
-- 데이터베이스
-
-### 코인과 토큰의 차이
-- 메인넷의 유무
-- 코인: 메인 넷 유
-- 토큰: 메인 넷 무
-
-++++++++++++++++++++++++++++++++++++++++++++++
-
 ### 2305008
 ### network
 - P2P: 클라이언트와 서버가 모두 작동되는 서버
@@ -98,7 +76,90 @@ npm install -D @types/express
 import express from "express"
 
 const app express()
+
 app.use(express.json())
+// type추론이 가능하므로 req,res에 타입을 작성해주지 않아도 된다.
+app.get("/", (req,res) => {
+    res.send("hello chopChain")
+})
 
 export default app
 ```
+
+### 클라이언트가 노드에게 account를 보내면 응답으로 balance를 받기를 원함
+
+
+### ingchain.ts
+block, chain, crypto, transaction, wallet에 대한 내용을 ingchain.ts에 모아놓았다.
+
+
+### index.ts에서 별칭을 사용하기 위해서 아래와 같이 tsconfig.json, package.json파일을 수정해주자.
+```ts
+import app from "@serve/app"
+```
+
+### tsconfig.json 수정
+serve추가
+```json
+"paths": {
+            "@constants/*": ["constants/*"],
+            "@core/*": ["core/*"],
+            "@serve/*": ["serve/*"]
+        }
+```
+
+### package.json
+"^@(serve)로 수정해줌
+```json
+"jest": {
+        "preset": "ts-jest",
+        "testMatch": [
+            "<rootDir>/__tests__/**/*.test.ts"
+        ],
+        "testEnvironment": "node",
+        "moduleNameMapper": {
+            "^@(serve|constants|core)/(.+)$": "<rootDir>/src/$1/$2"
+        }
+    },
+```
+
+### 8545포트에 요청을 보냈을 때 hello ingchain이라는 응답을 주고싶다.
+```ts
+import Ingchain from "@core/ingchain"
+import express from "express"
+
+// app.ts를 불러오면 빈 함수가 호출된다.
+export default (web3:Ingchain) => {
+    // console.log(web3)
+    // get localhost:8545
+
+    const app = express()
+    app.use(express.json())
+
+    app.get("/", (req, res) => {
+        res.send("hello chopChain")
+    })
+
+    app.get("/getBalance", (req,res) => {
+        // getBalance method call
+        res.send("balance...")
+    })
+}
+```
+
+### index.ts
+```ts
+여기까지 실행됐을 때는 함수 값이다.
+import App from "@serve/app"
+```
+
+### postman으로 post요청을 확인해보자
+맥북은 요청시 localhost대신 127.0.0.1로 요청을 할 것!!
+http://127.0.0.1:8545/getBalance
+
+### 채굴을 하려면 계정을 먼저 만들어야한다.
+
+### put, post 
+
+
+### src > wallet 디렉토리 생성

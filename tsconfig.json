@@ -12,7 +12,8 @@
         "baseUrl": "./src",
         "paths": {
             "@constants/*": ["constants/*"],
-            "@core/*": ["core/*"]
+            "@core/*": ["core/*"],
+            "@serve/*": ["serve/*"]
         }
     },
     "include": ["src/**/*", "__tests__"],

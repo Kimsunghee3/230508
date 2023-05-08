@@ -34,7 +34,7 @@
         ],
         "testEnvironment": "node",
         "moduleNameMapper": {
-            "^@(board|constants|core)/(.+)$": "<rootDir>/src/$1/$2"
+            "^@(serve|constants|core)/(.+)$": "<rootDir>/src/$1/$2"
         }
     },
     "dependencies": {
