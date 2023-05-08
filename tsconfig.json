@@ -13,7 +13,8 @@
         "paths": {
             "@constants/*": ["constants/*"],
             "@core/*": ["core/*"],
-            "@serve/*": ["serve/*"]
+            "@serve/*": ["serve/*"],
+            "@wallet/*":  ["wallet/*"]
         }
     },
     "include": ["src/**/*", "__tests__"],

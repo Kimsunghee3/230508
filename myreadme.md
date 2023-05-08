@@ -163,3 +163,56 @@ http://127.0.0.1:8545/getBalance
 
 
 ### src > wallet 디렉토리 생성
+노드: 8545번 포트 사용
+client: 3000번 포트 사용
+
+
+### wallet
+- 클라이언트 역할
+
+### wallet > app.ts
+nunjucks사용을 위해 설치필요
+```sh
+$ npm install nunjucks axios
+$ npm install -D @types/nunjucks
+$ npm install -D @types/axios
+```
+
+```ts
+import express from "express"
+
+export default () => {
+    const app = express()
+
+    app.use(express.json())
+
+
+    return app
+}
+```
+
+### wallet > views > index.html
+화면을 만들기 위해서 index.html파일을 생성해주었다.
+
+### tsconfig.json
+별칭사용을 위하여 wallet을 추가해주었다.
+```json
+"paths": {
+    "@constants/*": ["constants/*"],
+    "@core/*": ["core/*"],
+    "@serve/*": ["serve/*"],
+    "@wallet/*":  ["wallet/*"]
+}
+```
+
+### wallet > index.ts
+app을 불러오기 위하여 index.ts파일을 생성 후 불러와주었다.
+```ts
+import Wallet from "@wallet/app"
+
+const app = Wallet()
+
+app.listen(3000, () => {
+    console.log(`wallet start`)
+})
+```
