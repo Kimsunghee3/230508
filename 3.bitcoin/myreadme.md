@@ -284,3 +284,4 @@ back단에서 사용했던 server측 소켓 코드들이 한 파일에 같이 �
 
 WS HTTP
 
+4계층의 식별자: port

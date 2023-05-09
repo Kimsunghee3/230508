@@ -9,6 +9,7 @@ import Unspent from "@core/transaction/unspant"
 import DigitalSignature from "@core/wallet/digitalSignature"
 import Wallet from "@core/wallet/wallet"
 import App from "@serve/app"
+import P2PNetwork from "@serve/p2p"
 
 const chain = new Chain()
 
@@ -27,10 +28,12 @@ const web7722 = new Ingchain(chain, block, transaction, unspent, accounts)
 
 const app = App(web7722)
 
-app.listen(8545, () => {
-    console.log(`server start`)
-})
+// app.listen(8545, () => {
+//     console.log(`server start`)
+// })
 
+const p2p = new P2PNetwork()
+p2p.listen(8555)
 // const sender = accounts.create()
 // const received = accounts.create()
 

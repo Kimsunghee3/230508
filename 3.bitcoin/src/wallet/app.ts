@@ -69,8 +69,8 @@ export default (accounts: Wallet) => {
             const tx = await axios.post("http://127.0.0.1:8545/transaction", { receipt })
             res.json(tx)
             }catch(e){
-                if(e instanceof Error)
-            }
+                // if(e instanceof Error)
+                }
     })
 
     return app
